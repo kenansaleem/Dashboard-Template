@@ -1867,7 +1867,12 @@ button.main-menu-close:hover {
     display: grid;
     grid-template-columns: minmax(200px, 80%) minmax(260px, 20%);
 }
-
+@media (max-width: 768px) {
+    .big-content {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
 .files-content {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
