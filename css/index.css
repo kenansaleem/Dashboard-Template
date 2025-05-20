@@ -1438,6 +1438,7 @@ button.main-menu-close:hover {
     width: 100%;
     justify-content: space-around;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .backup-manager .c-b-location>div {
@@ -1445,6 +1446,8 @@ button.main-menu-close:hover {
     border-radius: 10px;
     width: 180px;
     height: 90px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .backup-manager .c-b-location>div label {
@@ -1454,18 +1457,55 @@ button.main-menu-close:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    justify-content: center;
+    padding: 10px;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .backup-manager .c-b-location>div input {
-    appearance: none;
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    z-index: 1;
 }
 
 .backup-manager .c-b-location>div:has(>input:checked) {
     color: var(--blue-color);
     border-color: var(--blue-color);
+    background-color: rgba(0, 117, 255, 0.05);
 }
 
+/* Add touch feedback */
+@media (hover: none) {
+    .backup-manager .c-b-location>div:active {
+        transform: scale(0.98);
+        background-color: rgba(0, 117, 255, 0.1);
+    }
+}
+
+/* Adjust for mobile screens */
+@media (max-width: 768px) {
+    .backup-manager .c-b-location {
+        gap: 15px;
+    }
+
+    .backup-manager .c-b-location>div {
+        width: calc(50% - 15px);
+        min-width: 140px;
+        height: 100px;
+    }
+
+    .backup-manager .c-b-location>div label {
+        font-size: 14px;
+    }
+
+    .backup-manager .c-b-location>div label i {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+}
 
 /* end Backup Manager */
 /* end settings */
@@ -1867,12 +1907,14 @@ button.main-menu-close:hover {
     display: grid;
     grid-template-columns: minmax(200px, 80%) minmax(260px, 20%);
 }
+
 @media (max-width: 768px) {
     .big-content {
         display: flex;
         flex-direction: column-reverse;
     }
 }
+
 .files-content {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 }
@@ -1999,9 +2041,13 @@ button.main-menu-close:hover {
     outline: 3px solid var(--green-color);
 }
 
-.plan.basic .type {outline: 3px solid var(--blue-color);}
+.plan.basic .type {
+    outline: 3px solid var(--blue-color);
+}
 
-.plan.premium .type {outline: 3px solid var(--orange-color);}
+.plan.premium .type {
+    outline: 3px solid var(--orange-color);
+}
 
 .plan .type .price {
     position: relative;
